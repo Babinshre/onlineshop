@@ -57,9 +57,11 @@
                                     <label>Password</label>
                                     <input class="au-input au-input--full" type="password" name="password" placeholder="Password" required>
                                 </div>
+                                @if (session()->has('error'))
                                 <div class="alert alert-danger" role="alert">
                                     {{ session('error') }}
                                 </div>
+                                @endif
                                 <div class="login-checkbox">
                                     <label>
                                         <input type="checkbox" name="remember">Remember Me

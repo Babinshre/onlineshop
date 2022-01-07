@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +21,7 @@ Route::get('/', function () {
 Route::get('/admin',[AdminController::class,'index']);
 Route::get('/admin/dashboard',[AdminController::class,'index']);
 Route::post('/admin/auth',[AdminController::class,'auth']);
+Route::middleware(['admin_auth'])->group(function () {
+    Route::get('/admin/dashboard',[AdminController::class,'dashboard']);
+    Route::get('/admin/category',[CategoryController::class,'index'])->name('category');
+    });

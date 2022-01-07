@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Admin;
+use App\Models\category;
 use Illuminate\Http\Request;
 
-class AdminController extends Controller
+class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,26 +14,7 @@ class AdminController extends Controller
      */
     public function index()
     {
-        return view('admin.login');
-    }
-    public function auth(Request $request)
-    {
-        $email = $request->post('email');
-        $password = $request->post('password');
-        $result = Admin::where(['email'=>$email,'password'=>$password])->get();
-        if(isset($result[0]->id)){
-            $request->session()->put('ADMIN_LOGIN','true'); 
-            $request->session()->put('ADMIN_ID',$result[0]->id); 
-            return redirect('admin/dashboard');
-        }
-        else{
-            $request->session()->flash('error','Please enter correct login details..');
-            return redirect('admin');
-        }
-    }
-    public function dashboard()
-    {
-        return view('admin.dashboard');
+        return view('admin.category');
     }
 
     /**
@@ -60,10 +41,10 @@ class AdminController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Admin  $admin
+     * @param  \App\Models\category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Admin $admin)
+    public function show(category $category)
     {
         //
     }
@@ -71,10 +52,10 @@ class AdminController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Admin  $admin
+     * @param  \App\Models\category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit(Admin $admin)
+    public function edit(category $category)
     {
         //
     }
@@ -83,10 +64,10 @@ class AdminController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Admin  $admin
+     * @param  \App\Models\category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Admin $admin)
+    public function update(Request $request, category $category)
     {
         //
     }
@@ -94,10 +75,10 @@ class AdminController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Admin  $admin
+     * @param  \App\Models\category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Admin $admin)
+    public function destroy(category $category)
     {
         //
     }
