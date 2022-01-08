@@ -4,6 +4,9 @@
 @endsection
 @section('content')
     <h4>This is category page</h4>
+    <a class="btn btn-sm btn-primary mt-3" href="addcategory">
+        Add category
+    </a>
     <div class="row m-t-30">
         <div class="col-md-12">
             <!-- DATA TABLE-->
