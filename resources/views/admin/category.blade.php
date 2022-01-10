@@ -4,7 +4,7 @@
 @endsection
 @section('content')
     <h4>This is category page</h4>
-    <a class="btn btn-sm btn-primary mt-3" href="addcategory">
+    <a class="btn btn-sm btn-primary mt-3" href="{{ route('category.create') }}" >
         Add category
     </a>
     <div class="row m-t-30">

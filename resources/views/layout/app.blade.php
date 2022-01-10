@@ -63,7 +63,7 @@
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
                         <li>
-                            <a href="category">
+                            <a {{ route('category.index') }}>
                                 <i class="fas fa-copy"></i>Category</a>
                         </li>
                         <li>
@@ -342,6 +342,10 @@
                                         @yield('title')
                                     </h2>  
                                 </div>
+                                
+                                @if(Session::has('success'))
+                                    <p class="col-lg-10 alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('success') }}</p>
+                                @endif
                                 @yield('content') 
                             </div>
                         </div>

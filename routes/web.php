@@ -23,6 +23,7 @@ Route::get('/admin/dashboard',[AdminController::class,'index']);
 Route::post('/admin/auth',[AdminController::class,'auth']);
 Route::middleware(['admin_auth'])->group(function () {
     Route::get('/admin/dashboard',[AdminController::class,'dashboard']);
-    Route::get('/admin/category',[CategoryController::class,'index'])->name('category');
-    Route::get('/admin/addcategory',[CategoryController::class,'create'])->name('addcategory');
+    // Route::get('/admin/category',[CategoryController::class,'index'])->name('category');
+    // Route::get('/admin/addcategory',[CategoryController::class,'create'])->name('addcategory');
+    Route::resource('admin/category', CategoryController::class);
     });
