@@ -14,7 +14,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.category');
+        $categories = category::all();
+        return view('admin.category')->with(compact('categories'));
     }
 
     /**
@@ -35,8 +36,13 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            'title'=>'required',
+            'slug'=>'required|unique:categories',
+        ]);
         $category = new category();
         $category->title = $request->title;
+        $category->slug = str_slug($request->slug);
         $category->save();
         $request->session()->flash('success', 'Category added successfully ');
         return redirect()->back();
@@ -61,7 +67,11 @@ class CategoryController extends Controller
      */
     public function edit(category $category)
     {
-        //
+        /* using route model binding */
+        return view('admin.editcategory')->with('category',$category);
+        /* using findby */
+        // $category = category::find($id);
+        // return view('admin.editcategory',compact('category'));
     }
 
     /**
@@ -73,7 +83,11 @@ class CategoryController extends Controller
      */
     public function update(Request $request, category $category)
     {
-        //
+        $category->title = $request->title;
+        $category->slug = str_slug($request->slug);
+        $category->save();
+        $request->session()->flash('success', 'Category updated successfully ');
+        return redirect()->back();
     }
 
     /**
@@ -82,8 +96,10 @@ class CategoryController extends Controller
      * @param  \App\Models\category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(category $category)
+    public function destroy(Request $request, category $category)
     {
-        //
+        $category->destroy($category->id);
+        $request->session()->flash('fail', 'Category deleted successfully ');
+        return redirect()->back();
     }
 }

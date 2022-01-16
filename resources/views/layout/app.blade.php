@@ -63,7 +63,7 @@
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
                         <li>
-                            <a {{ route('category.index') }}>
+                            <a href="kando">
                                 <i class="fas fa-copy"></i>Category</a>
                         </li>
                         <li>
@@ -128,7 +128,7 @@
                                 <i class="fas fa-tachometer-alt"></i>Dashboard</a>
                         </li>
                         <li>
-                            <a href="category">
+                            <a href="{{ route('category.index') }}">
                                 <i class="fas fa-copy"></i>Category</a>
                         </li>
                         <li class="has-sub">
@@ -318,7 +318,7 @@
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__footer">
-                                                <a href="#">
+                                                <a href="logout">
                                                     <i class="zmdi zmdi-power"></i>Logout</a>
                                             </div>
                                         </div>
@@ -345,6 +345,9 @@
                                 
                                 @if(Session::has('success'))
                                     <p class="col-lg-10 alert {{ Session::get('alert-class', 'alert-info') }}">{{ Session::get('success') }}</p>
+                                @endif
+                                @if(Session::has('fail'))
+                                    <p class="col-lg-10 alert {{ Session::get('alert-class', 'alert-danger') }}">{{ Session::get('fail') }}</p>
                                 @endif
                                 @yield('content') 
                             </div>
